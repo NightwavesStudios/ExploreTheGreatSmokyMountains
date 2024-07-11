@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Basic Meta & Title Tags -->
+    <meta charset="utf-8">
+    <meta description="A webpage offering information all about the Smoky Mountains from maps and packing lists to places to eat and beautiful hikes.">
+    <title>Explore The Great Smoky Mountains (TCO Entry)</title>
+
+    <!-- Import Google Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Import Dosis Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+
+    <!-- Animations Stylesheet -->
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes right-slide {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        @keyframes left-slide {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        @keyframes up-slide {
+            0% {
+                transform: translateY(100%);
+            }
+            50% {
+                transform: translateY(-50%);
+            }
+            60% {
+                transform: translateY(0%);
+            }
+            80% {
+                transform: translateY(30%);
+            }
+            100% {
+                transform: translateY(0%);
+            }
+        }
+        @keyframes down-slide {
+            0% {
+                transform: translateY(-100%);
+            }
+            50% {
+                transform: translateY(50%);
+            }
+            60% {
+                transform: translateY(0%);
+            }
+            80% {
+                transform: translateY(-30%);
+            }
+            100% {
+                transform: translateY(0%);
+            }
+        }
+
+        @keyframes enlarge {
+            0% {
+                width: scale(1);
+            }
+
+            35% {
+                transform: scale(2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .scroll-element {
+            opacity: 0;
+        }
+
+        .scrolled {
+            transition: 0.2s opacity;
+            opacity: 1;
+            transition-delay: 0.2s;
+        }
+
+        .scrolled.left-slide {
+            animation: left-slide 0.9s ease-in-out;
+            animation-delay: 0.2s;
+        }
+
+        .scrolled.right-slide {
+            animation: right-slide 0.9s ease-in-out;
+            animation-delay: 0.2s;
+        }
+        .scrolled.down-slide {
+            animation: down-slide 0.5s ease-in-out;
+            animation-delay: 0.2s;
+        }
+        .scrolled.fade-in {
+            animation: fade-in 1.5s ease-in-out;
+            animation-delay: 0.2s;
+        }
+
+        .scrolled.up-slide {
+            animation: up-slide 0.5s ease-in-out;
+            animation-delay: 0.2s;
+        }
+
+        .scrolled.spin {
+            animation: spin 0.5s ease-in-out;
+            animation-delay: 0.2s;
+        }
+        .scrolled.enlarge {
+            animation: enlarge 0.5s ease-in-out;
+            animation-delay: 0.2s;
+        }
+    </style>
+
+    <!-- Parallax Stylesheet -->
+    <style>
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+    <!-- Main Stylesheet -->
+    <style>
+        /* Basic Styling */
+        body {
+            margin: 0px;
+            text-align: center;
+            font-family: "Dosis", sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            padding: 7.5px;
+            margin: 10px;
+            transition: transform 0.5s;
+            transition: 0.4s;
+        }
+
+        button:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        /* Link Styling */
+        a {
+            color: #0000FF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button a {
+            color: black;
+        }
+        button a:hover {
+            text-decoration: none;
+        }
+        
+        /* Sidebar Styling */
+        #sidebar {
+            position: fixed;
+            height: 100%;
+            width: 25px;
+            top: 0;
+            left: 0;
+            background-color: #000000;
+            padding: 15px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+
+        #sidebar a {
+            font-size: 25px;
+            color: #ffffff;
+            padding-bottom: 40px;
+            display: block;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        #sidebar a:hover {
+            color: #a5a5a5;
+        }
+
+        /* Header Styling */
+        #header {
+            position: relative;
+            background-image: linear-gradient(43deg,
+                    rgba(255, 255, 255, 0.5),
+                    rgba(255, 0, 0, 0.5)),
+                url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Clifftops4-7-07.jpg/272px-Clifftops4-7-07.jpg");
+            background-size: cover;
+            min-height: 100vh;
+            width: calc(100vw - 65px);
+            float: right;
+        }
+
+        #header h1 {
+            position: relative;
+
+            top: 30vh;
+        }
+
+        #header p {
+            position: relative;
+            top: 30vh;
+        }
+
+        /* About Styling */
+        #about {
+            position: relative;
+            min-height: 100vh;
+            background-image: linear-gradient(43deg,
+                    rgba(255, 255, 255, 0.5),
+                    rgba(255, 255, 255, 0.5)),
+                url("https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Smoky_Mtn_View.jpg/550px-Smoky_Mtn_View.jpg");
+            background-size: cover;
+            width: calc(100vw - 65px);
+            float: right;
+        }
+
+        #about h1,
+        p {
+            top: 0px;
+            padding: 10px;
+        }
+
+        /* Map Styling */
+        #map {
+            position: relative;
+            min-height: 100vh;
+            background-image: linear-gradient(43deg,
+                    rgba(255, 255, 255, 0.5),
+                    rgba(255, 56, 56, 0.5)),
+                url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Gsm100_1547.jpg/240px-Gsm100_1547.jpg");
+            background-size: cover;
+            width: calc(100vw - 65px);
+            float: right;
+        }
+
+        /* Gear Styling */
+        #gear {
+            position: relative;
+            min-height: 100vh;
+            background-image: linear-gradient(43deg,
+                    rgba(255, 255, 255, 0.5),
+                    rgba(255, 56, 56, 0.5)),
+                url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Clingmans_Dome-27527-1.jpg/800px-Clingmans_Dome-27527-1.jpg");
+            background-size: cover;
+            width: calc(100vw - 65px);
+            float: right;
+        }
+
+        #gear ul {
+            padding: 10px;
+            list-style-type: none;
+            display: inline;
+        }
+
+        /* Food Styling */
+        #food {
+            position: relative;
+            min-height: 100vh;
+            background-image: linear-gradient(43deg,
+                    rgba(255, 255, 255, 0.5),
+                    rgba(255, 89, 89, 0.5)),
+                url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Alum-cave-bluffs-tn1.jpg/240px-Alum-cave-bluffs-tn1.jpg");
+            background-size: cover;
+            width: calc(100vw - 65px);
+            float: right;
+        }
+
+        /* Activities Styling */
+        #activities {
+            position: relative;
+            min-height: 100vh;
+            background-image: linear-gradient(43deg,
+                    rgba(255, 133, 255, 0.2),
+                    rgba(255, 33, 33, 0.2)),
+                url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Old-black-fraser-firs-tn1.jpg/220px-Old-black-fraser-firs-tn1.jpg");
+            background-size: cover;
+            width: calc(100vw - 65px);
+            float: right;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <a class="material-icons" href="#header" title="Header">home</a>
+        <a class="material-icons" href="#about" title="About">help</a>
+        <a class="material-icons" href="#map" title="Map">map</a>
+        <a class="material-icons" href="#gear" title="Gear">work</a>
+        <a class="material-icons" href="#food" title="Food">restaurant</a>
+        <a class="material-icons" href="#activities" itle="Activites">park</a>
+    </nav>
+
+    <!-- Header -->
+    <div id="header" class="parallax">
+        <h1 class="scroll-element right-slide">Explore the Smokies!</h1>
+        <p class="scroll-element left-slide">The best place to go for Summer Vacation!</p>
+    </div>
+
+    <!-- About --->
+    <div id="about" class="parallax">
+        <h2 class="scroll-element right-slide">About The Smoky Mountains</h2>
+        <p class="scroll-element fade-in">The Great Smoky Mountains, a subrange of the Appalachian Mountains, are an emblem of natural beauty and rich history, straddling the border between North Carolina and Tennessee. Known for their mist-covered peaks, which give the mountains their name, they are home to a diverse array of flora and fauna, some of which are found nowhere else on Earth. The ancient mountains boast a wondrous diversity of life, with over 19,000 documented species. The park preserves the heritage of Southern Appalachian mountain culture and is the most visited national park in the United States. This is a testament to its breathtaking landscapes, from cascading waterfalls to expansive forests and an array of historic buildings. Visitors to the Great Smoky Mountains can explore a multitude of trails, including a portion of the famed Appalachian Trail, which traverses the park from Maine to Georgia. The park offers a variety of experiences, from auto touring along the scenic Newfound Gap Road to wildlife viewing, particularly the park's population of black bears. The park's commitment to preservation is evident in its designation as a UNESCO World Heritage Site and an International Biosphere Reserve. Whether it's the serene beauty of Cades Cove or the panoramic views from Clingmans Dome, the highest point in Tennessee, the Great Smoky Mountains National Park is a place where nature's grandeur is on full display, inviting adventurers and tranquility seekers alike to bask in its majestic beauty.</p>
+    </div>
+
+    <!-- Map -->
+    <div id="map" class="parallax">
+        <h2 class="scroll-element up-slide">Map</h2>
+        <img>
+    </div>
+
+    <!-- Gear -->
+    <div id="gear" class="parallax">
+        <h2 class="scroll-element down-slide">Gear</h2>
+        <p class="scroll-element fade-in">Embarking on a camping or RV adventure in the Smoky Mountains is an experience that calls for thoughtful preparation and the right gear. Whether nestled within the dense forests, alongside a babbling brook, or perched at a scenic overlook, each site offers a unique encounter with nature that is both invigorating and serene. The key to maximizing enjoyment in this diverse landscape is to equip oneself with versatile equipment that can adapt to the varying climates and terrains.</p>
+        <h3 class="scroll-element enlarge">Basic List of Gear</h3>
+        <div class="scroll-element fade-in">
+        <ul>
+            <li>Tent or Hammock (If Camping)</li>
+            <li>Sleeping Bag or Sheets</li>
+            <li>Pillow</li>
+            <li>Sleeping Mat or Pad (If Needed)</li>
+            <li>Clothes (Including Rain Gear, Socks, etc.)</li>
+            <li>Bag or Pack (To Carry Around with You)</li>
+            <li>10 Essentials (<a href="https://www.nps.gov/articles/10essentials.htm">View List</a>)</li>
+            <li>Water Bottles</li>
+            <li>First Aid Kit & Medicine (Bandaids, Inhaler, etc.)</li>
+            <li>Personal Belongings (Credit Card, ID, etc.)</li>
+            <li>Other (Camera, Binoculars, etc.)</li>
+        </ul>
+        </div>
+    </div>
+
+    <!-- Food -->
+    <div id="food" class="parallax">
+        <h2  class="scroll-element right-slide">Food</h2>
+        <p class="scroll-element left-slide">No campout or RV trip is complete without the delight of good food! Imagine sitting by a crackling fire under the open sky, the aroma of freshly grilled vegetables and sizzling steaks wafting through the air. It's not just about sustenance; it's about the experience. Cooking outdoors turns a meal into an event, bringing together friends and family for a feast that's as much about the laughter and stories shared around the fire as it is about the food on the plate. Whether it's the simplicity of hot dogs and marshmallows or the sophistication of a gourmet spread, the right food can turn any outdoor excursion into a memorable adventure.</p>
+        <h3  class="scroll-element enlarge">Camp Recipes</h3>
+        <p  class="scroll-element right-slide">Cooking in the Smokies can be a delightful experience, allowing you to enjoy the great outdoors while preparing delicious meals. One could consider simple yet hearty recipes like foil-wrapped veggies and meats that can be cooked directly over a campfire. Another idea is to prepare skewers with a variety of meats, vegetables, and even fruits for a quick and customizable meal option. For breakfast, campfire pancakes or scrambled eggs can start the day off right.</p>
+        <button class="scroll-element spin"><a href="https://www.nps.gov/subjects/camping/recipes.htm">Explore Recipes</a></button>
+        <h3  class="scroll-element enlarge">Local Option</h3>
+        <p   class="scroll-element left-slide">While there may not be many resturants tucked in the Smoky Mountains, Gatlinburg sits conviniently right outside of the park. It offers a diverse culinary scene that caters to all tastes and preferences. From the cozy cabin setting of Delauder's BBQ, known for its divine smoked meats, to the historic ambiance of The Peddler Steakhouse, visitors can indulge in a range of flavors. Pancake Pantry, a local favorite, serves up what many consider the best pancakes around, while those looking for a high-end dining experience might prefer the exclusive offerings of The Greenbrier. Each restaurant provides not just a meal, but an experience that complements the natural beauty and adventure found in the Smokies. while it may seem odd to drive to Gatlinburg during your outdoor retreat, you will quickly find you were missing out before!</p>
+        <button class="scroll-element spin"><a href="https://www.google.com/maps/place/Gatlinburg,+TN+37738">Get Directions</a></button>
+    </div>
+
+    <!-- Activities -->
+    <div id="activities" class="parallax">
+        <h2 class="scroll-element right-slide">Activities</h2>
+        <p class="scroll-element left-slide">Activities Paragraph</p>
+        <h3 class="scroll-element enlarge">Hiking</h3>
+        <p class="scroll-element right-slide">The Great Smoky Mountains National Park offers a diverse array of hiking trails that cater to all levels of hikers, each promising a unique and enriching experience amidst nature's splendor. For those seeking breathtaking views, Clingmans Dome is a must-visit, being the highest point in the park and accessible via a short hike. The Alum Cave Trail provides a moderately challenging hike with rewarding vistas and geological features, while the Andrews Bald trail offers an easier hike from Clingmans Dome to a scenic grassy bald. For waterfall enthusiasts, the <a href="https://www.nps.gov/grsm/planyourvisit/abrams-falls.htm">Abrams Falls Trail</a> and Ramsey Cascades offer stunning waterfall views, with the latter being the tallest in the park. History buffs may enjoy the Cades Cove Loop, which is rich in historical sites and wildlife. Those looking for a more strenuous adventure might tackle the 8-mile round-trip hike on the Appalachian Trail from Newfound Gap to Charlies Bunion, which features some of the most striking panoramic views in the park. Each trail in the Smokies provides a unique opportunity to connect with nature, witness the park's biodiversity, and enjoy the serene beauty of the Appalachian wilderness.</p>
+        <button class="scroll-element spin"><a href="https://www.nps.gov/grsm/planyourvisit/hiking.htm">Explore More Hiking Options</a></button>
+        <h3 class="scroll-element enlarge">Views</h3>
+        <p class="scroll-element left-slide">The Great Smoky Mountains, a subrange of the Appalachian Mountains, offer some of the most breathtaking views in the United States. The park is renowned for its diverse wildlife, ancient mountains, and remnants of Southern Appalachian mountain culture. One of the best ways to experience the grandeur of the Smokies is by visiting some of its famous viewpoints. Clingmans Dome, the highest point in Tennessee and the Smokies, provides a panoramic view that spans over 100 miles on clear days. The Newfound Gap, with its lower elevation, offers a different but equally stunning perspective, where visitors can stand on the state line between North Carolina and Tennessee. For those seeking a serene and less crowded experience, the Look Rock Tower offers a 360-degree view of the mountainous landscape. Each viewpoint presents a unique vista that encapsulates the natural beauty of the Smoky Mountains, making it a must-visit destination for nature enthusiasts and photographers alike. Whether you're driving through the scenic routes or hiking up the trails, the Smokies provide an array of picturesque landscapes that are sure to leave a lasting impression.</p>
+        <button class="scroll-element spin"><a href="https://www.google.com/maps/search/smoky+mountains+views">Discover More Great Views</a></button>
+    </div>
+
+    <!-- Scroll Animations Script -->
+    <script>
+        /** 
+   Credits to Polar Labs for Tutorial
+   Link: https://www.khanacademy.org/cs/i/6162500700651520
+  **/
+        function checkScroll() {
+            
+            //Find all Animation Elements
+            const scrollElements = document.querySelectorAll('.scroll-element');
+            
+            //Check if Each Element is in View
+            for (let i = scrollElements.length; i--;) {
+                if (scrollElements[i].getBoundingClientRect().top < window.innerHeight) {
+                    //If in View, add Scrolled Tag
+                    scrollElements[i].classList.add('scrolled');
+                } else {
+                    //If not in View, remove Scrolled Tag
+                    scrollElements[i].classList.remove('scrolled');
+                }
+            }
+        }
+        checkScroll();
+        document.addEventListener('scroll', checkScroll);
+    </script>
+
+</body>
+
+</html>
